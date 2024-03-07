@@ -23,7 +23,7 @@ Route::middleware('auth')->group(function () {
     //place other routes here, will require a route to add to basket
 });
 
-Route::resource('Admin/carparts', AdminCarPartController::class)->middleware(['auth'])->names('admin.carparts'); //deleted / before admin might break
+Route::resource('Admin/carparts', AdminCarPartController::class)->middleware(['auth'])->names('admin.carparts'); //middleware is responible for authencating and forcing the user to log in, removing this we can make it so that a user can be classed as 'guest' so they do not have to log in, unless they want too.
 
 
 require __DIR__.'/auth.php';

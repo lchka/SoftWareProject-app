@@ -20,7 +20,7 @@
 
             <!-- Display Car Parts -->
             @foreach ($carparts as $index => $carpart)
-                <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
+                <div class="my-2 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                     <!-- Car part details -->
                     <h2 class="font-bold text-2xl">
                         {{ $index + 1 }}. <a href="{{ route('admin.carparts.show', $carpart) }}">{{ ucfirst($carpart->name) }}</a>
