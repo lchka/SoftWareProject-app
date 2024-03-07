@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller; 
 use App\Models\CarPart;
@@ -12,6 +12,6 @@ class CarPartController extends Controller
     public function index()
     {
         $carparts = CarPart::all();
-        return view('admin.carparts.index', compact('carparts'));
+        return view('user.carparts.index', compact('carparts'));
     }
 }

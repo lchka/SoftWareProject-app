@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 //carpart controller
 use App\Http\Controllers\Admin\CarPartController as AdminCarPartController;
+use App\Http\Controllers\User\CarPartController as UserCarPartController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,6 +25,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('Admin/carparts', AdminCarPartController::class)->middleware(['auth'])->names('admin.carparts'); //middleware is responible for authencating and forcing the user to log in, removing this we can make it so that a user can be classed as 'guest' so they do not have to log in, unless they want too.
-
+Route::resource('User/carparts', AdminCarPartController::class)->middleware(['auth'])->names('user.carparts'); 
 
 require __DIR__.'/auth.php';
