@@ -25,6 +25,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('Admin/carparts', AdminCarPartController::class)->middleware(['auth'])->names('admin.carparts'); //middleware is responible for authencating and forcing the user to log in, removing this we can make it so that a user can be classed as 'guest' so they do not have to log in, unless they want too.
-Route::resource('User/carparts', AdminCarPartController::class)->middleware(['auth'])->names('user.carparts'); 
+Route::resource('User/carparts', UserCarPartController::class)->middleware(['auth'])->names('user.carparts'); 
 
 require __DIR__.'/auth.php';
