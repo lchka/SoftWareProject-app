@@ -3,16 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+//carpart controller
+use App\Http\Controllers\Admin\CarPartController as AdminCarPartController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -30,5 +22,8 @@ Route::middleware('auth')->group(function () {
 
     //place other routes here, will require a route to add to basket
 });
+
+Route::resource('Admin/carparts', AdminCarPartController::class)->middleware(['auth'])->names('admin.carparts'); //deleted / before admin might break
+
 
 require __DIR__.'/auth.php';
