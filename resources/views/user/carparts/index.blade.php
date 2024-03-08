@@ -13,11 +13,7 @@
                 <!-- Your filter form content -->
             </form>
 
-            <!-- Add a car part button -->
-            <x-primary-button>
-                <a href="{{ route('user.carparts.create') }}">Add a car part</a>
-            </x-primary-button>
-
+           
             <!-- Display Car Parts -->
             @foreach ($carparts as $index => $carpart)
                 <div class="my-2 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
