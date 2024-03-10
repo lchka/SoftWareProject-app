@@ -28,3 +28,7 @@ Route::resource('Admin/carparts', AdminCarPartController::class)->middleware(['a
 Route::resource('User/carparts', UserCarPartController::class)->middleware(['auth'])->names('user.carparts'); 
 
 require __DIR__.'/auth.php';
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
