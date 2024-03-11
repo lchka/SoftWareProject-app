@@ -16,6 +16,7 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
+
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
@@ -49,7 +50,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ms-auto align-items-center">
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -64,15 +65,23 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <li class="nav-item d-flex justify-content-center ">
+                                <span class="nav-link fs-5 text-success">({{ Auth::user()->points }})</span>
+                            </li>
+                            <!-- to remove brackets simply remove them -->
+                            <li class="nav-item">
+                                <a id="navbarDropdown" class="nav-link " href="#" role="button" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
+                                </a>
+                            </li>
+                            
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -92,4 +101,5 @@
         </main>
     </div>
 </body>
+
 </html>

@@ -17,6 +17,5 @@ class DatabaseSeeder extends Seeder
         CarPart::factory()->count(15)->create();
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
-
     }
 }

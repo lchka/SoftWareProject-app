@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('car_model');
             $table->enum('car_brand',['Toyota','Honda', 'Ford', 'Chevrolet', 'Volkswagen', 'Nissan', 'BMW', 'Mercedes-Benz', 'Audi', 'Hyundai', 'Kia', 'Subaru', 'Jeep', 'Tesla', 'Lexus', 'Mazda', 'Volvo', 'Porsche', 'Ferrari', 'Mitsubishi']);
             $table->decimal('price', 8,2);
+            $table->year('year_of_prod');
             $table->string('point_price');
             $table->enum('usage_level', [ 'New', 'Like New', 'Good', 'Fair', 'Poor']);
             $table->string('car_part_image')->nullable();
