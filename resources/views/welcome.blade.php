@@ -5,8 +5,8 @@
     <div class="col-md-12 mx-5">
         <div class="row justify-content-center">
             <div>
-                <h1>Hello World</h1>
-                <h3>This is a laravel-bootstrap template</h3>
+                <h1>HI CLIMATE CHANGE ECO</h1>
+                <h3>This is THE HOMEPAGE FOR GREENDIESEL</h3>
                 <div class="row mt-5">
                     <!-- Left Column with Padding -->
                     <div class="col-md-5 bg-primary p-4">
