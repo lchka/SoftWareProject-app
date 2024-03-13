@@ -39,7 +39,7 @@
                             <a class="nav-link" href="">Services</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">Recycle Form</a>
+                            <a class="nav-link" href="{{ route('decisions.create') }}">Recycle Form</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="">Our Goal</a>
