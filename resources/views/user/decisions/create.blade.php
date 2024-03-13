@@ -2,51 +2,58 @@
 
 @section('content')
 <div class="container">
-    <h2>Create Car Part</h2>
-    <form method="POST" action="{{ route('carparts.store') }}" enctype="multipart/form-data">
+    <h2>Create Decision</h2>
+    <form action="{{ route('decisions.store') }}" method="post" enctype="multipart/form-data" novalidate>
         @csrf
-        <div class="form-group">
+
+        <div class="form-group my-3">
             <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" name="name" required value="{{ old('name') }}">
+            <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{ old('name') }}" required>
             @error('name')
                 <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
-        <div class="form-group">
+
+        <div class="form-group my-3">
             <label for="description">Description</label>
-            <textarea class="form-control" id="description" name="description" required>{{ old('description') }}</textarea>
+            <textarea class="form-control" id="description" name="description" placeholder="Description" required>{{ old('description') }}</textarea>
             @error('description')
                 <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
-        <div class="form-group">
+
+        <div class="form-group my-3">
             <label for="car_model">Car Model</label>
-            <input type="text" class="form-control" id="car_model" name="car_model" required value="{{ old('car_model') }}">
+            <input type="text" class="form-control" id="car_model" name="car_model" placeholder="Car Model" value="{{ old('car_model') }}" required>
             @error('car_model')
                 <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
-        <div class="form-group">
+
+        <div class="form-group my-3">
             <label for="car_brand">Car Brand</label>
-            <input type="text" class="form-control" id="car_brand" name="car_brand" required value="{{ old('car_brand') }}">
+            <input type="text" class="form-control" id="car_brand" name="car_brand" placeholder="Car Brand" value="{{ old('car_brand') }}" required>
             @error('car_brand')
                 <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
-        <div class="form-group">
+
+        <div class="form-group my-3">
             <label for="year_of_prod">Year of Production</label>
-            <input type="number" class="form-control" id="year_of_prod" name="year_of_prod" required value="{{ old('year_of_prod') }}">
+            <input type="number" class="form-control" id="year_of_prod" name="year_of_prod" placeholder="Year of Production" value="{{ old('year_of_prod') }}" required>
             @error('year_of_prod')
                 <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
-        <div class="form-group">
+
+        <div class="form-group my-3">
             <label for="decision_image">Image</label>
             <input type="file" class="form-control-file" id="decision_image" name="decision_image">
             @error('decision_image')
                 <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
+
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
