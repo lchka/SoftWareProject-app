@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('car_model');
             $table->enum('car_brand',['Toyota','Honda', 'Ford', 'Chevrolet', 'Volkswagen', 'Nissan', 'BMW', 'Mercedes-Benz', 'Audi', 'Hyundai', 'Kia', 'Subaru', 'Jeep', 'Tesla', 'Lexus', 'Mazda', 'Volvo', 'Porsche', 'Ferrari', 'Mitsubishi']);
             $table->year('year_of_prod');
+            $table->enum('status',["pending","denied","approved"]);
             $table->string('decision_image')->nullable();
             $table->timestamps();
         });

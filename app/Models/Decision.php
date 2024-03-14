@@ -14,6 +14,7 @@ class Decision extends Model
         'car_model',
         'car_brand',
         'year_of_prod',
+        'status',
         'decision_image'
     ];
     protected $table = 'decision';

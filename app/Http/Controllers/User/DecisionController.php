@@ -32,10 +32,17 @@ class DecisionController extends Controller
             $imagePath = $request->file('decision_image')->store('car_images');
             $validatedData['decision_image'] = $imagePath;
         }
-
+        $validatedData['status'] = 'pending'; // Set the status to pending
         // Create a new decision
         Decision::create($validatedData);
 
         return redirect()->route('decisions.create')->with('success', 'Decision created successfully!');
+    }
+    public function viewPastForms()
+    {
+        // Fetch the user's past submitted forms
+        $pastForms = Decision::where('user_id', auth()->id())->get();
+
+        return view('user.decisions.past_forms', compact('pastForms'));
     }
 }

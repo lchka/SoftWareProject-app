@@ -22,6 +22,7 @@ class DecisionFactory extends Factory
             'car_model'=>fake()->sentence,
             'car_brand'=>fake()->randomElement(['Toyota','Honda', 'Ford', 'Chevrolet', 'Volkswagen', 'Nissan', 'BMW', 'Mercedes-Benz', 'Audi', 'Hyundai', 'Kia', 'Subaru', 'Jeep', 'Tesla', 'Lexus', 'Mazda', 'Volvo', 'Porsche', 'Ferrari', 'Mitsubishi']),
             'year_of_prod'=>fake()->year,
+            'status'=>fake()->randomElement(['pending','denied','approved']),
             'decision_image'=>fake()->imageUrl,
             'created_at'=>now(),
             'updated_at'=>now(),

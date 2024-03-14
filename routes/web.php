@@ -38,6 +38,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/decisions', [UserDecisionController::class, 'store'])->name('decisions.store');
 });
 
+Route::get('/user/decisions/past_forms', [UserDecisionController::class, 'viewPastForms'])->name('user.decisions.past_forms');
+
 require __DIR__.'/auth.php';
 
 // Auth::routes();
