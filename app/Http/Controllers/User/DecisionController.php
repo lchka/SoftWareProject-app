@@ -10,6 +10,26 @@ use Illuminate\Support\Facades\Auth;
 class DecisionController extends Controller
 {
     // Method to show the form for creating a new decision
+
+    public function index()
+    {
+        $pastForms = Decision::where('user_id', auth()->id())->get();
+
+        return view('user.decisions.past_forms', compact('pastForms'));
+    }
+
+    //shows a view to view the forms content
+    public function show($id)
+    {
+        try {
+            $decision = Decision::findOrFail($id);
+            return view('user.decisions.show', compact('decision'));
+        } catch (\Exception $e) {
+            return redirect()->route('user.decisions.past_forms')->with('error', 'Decision not found.');
+        }
+    }
+
+    //to create form
     public function create()
     {
         return view('user.decisions.create');
@@ -45,18 +65,8 @@ class DecisionController extends Controller
         return redirect()->route('decisions.create')->with('success', 'Decision created successfully!');
     }
 
-    public function viewPastForms()
-    {
-        // Fetch the user's past submitted forms
-        $pastForms = Decision::where('user_id', auth()->id())->get();
 
-        return view('user.decisions.past_forms', compact('pastForms'));
-    }
-    public function show(Decision $decision)
-    {
-        return view('user.decisions.show', compact('decision'));
-    }
-     public function destroy(Decision $decision)
+    public function destroy(Decision $decision)
     {
         // Check if the user is authorized to delete the decision
         if ($decision->user_id == Auth::id()) {

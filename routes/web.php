@@ -28,19 +28,26 @@ Route::middleware('auth')->group(function () {
 
 });
 
-    //place other routes here, will require a route to add to basket
-
 
 Route::resource('Admin/carparts', AdminCarPartController::class)->middleware(['auth'])->names('admin.carparts'); //middleware is responible for authencating and forcing the user to log in, removing this we can make it so that a user can be classed as 'guest' so they do not have to log in, unless they want too.
 Route::resource('carparts', UserCarPartController::class)->names('user.carparts');
 
 
+
+
+
+///decisions DONT FUCKING TOUCH THESE
 Route::middleware('auth')->group(function () {
     Route::get('/decisions/create', [UserDecisionController::class, 'create'])->name('decisions.create');
     Route::post('/decisions', [UserDecisionController::class, 'store'])->name('decisions.store');
 });
+Route::get('/decisions/{id}', [UserDecisionController::class, 'show'])->name('decisions.show');
+Route::get('/user/decisions/past_forms', [UserDecisionController::class, 'index'])->name('user.decisions.past_forms');
+Route::delete('/decisions/{id}', [UserDecisionController::class, 'destroy'])->name('decisions.destroy');
 
-Route::get('/user/decisions/past_forms', [UserDecisionController::class, 'viewPastForms'])->name('user.decisions.past_forms');
+
+
+
 
 require __DIR__.'/auth.php';
 
