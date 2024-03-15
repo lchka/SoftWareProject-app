@@ -9,7 +9,7 @@
                 <th>Name</th>
                 <th>Status</th>
                 <th>Date Submitted</th>
-                <th>Action</th>
+                <th>Actions</th> <!-- Changed the heading to "Actions" -->
             </tr>
         </thead>
         <tbody>
@@ -19,6 +19,13 @@
                 <td>{{ ucfirst($form->status) }}</td>
                 <td>{{ $form->created_at->format('Y-m-d H:i:s') }}</td>
                 <td>
+                    <a href="{{ route('decisions.show', $form->id) }}" class="btn btn-primary">View</a>
+                    <!-- Button to delete the form -->
+                    <form action="{{ route('decisions.destroy', $form->id) }}" method="POST" style="display: inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this form?')">Delete</button>
+                    </form>
                 </td>
             </tr>
             @endforeach

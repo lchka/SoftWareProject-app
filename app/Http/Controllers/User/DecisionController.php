@@ -52,4 +52,18 @@ class DecisionController extends Controller
 
         return view('user.decisions.past_forms', compact('pastForms'));
     }
+    public function show(Decision $decision)
+    {
+        return view('user.decisions.show', compact('decision'));
+    }
+     public function destroy(Decision $decision)
+    {
+        // Check if the user is authorized to delete the decision
+        if ($decision->user_id == Auth::id()) {
+            $decision->delete();
+            return redirect()->route('user.decisions.past_forms')->with('success', 'Decision deleted successfully!');
+        } else {
+            return redirect()->route('user.decisions.past_forms')->with('error', 'You are not authorized to delete this decision!');
+        }
+    }
 }
