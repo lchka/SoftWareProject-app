@@ -19,7 +19,6 @@
                 <td>{{ ucfirst($form->status) }}</td>
                 <td>{{ $form->created_at->format('Y-m-d H:i:s') }}</td>
                 <td>
-                    <a href="{{ route('form.show', $form->id) }}" class="btn btn-primary">View</a>
                 </td>
             </tr>
             @endforeach

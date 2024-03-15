@@ -17,6 +17,8 @@ class DecisionFactory extends Factory
     public function definition(): array
     {
         return [
+            
+            'user_id' => \App\Models\User::factory(), // Add this line
             'name'=> fake()->sentence,
             'description'=>fake()->paragraph,
             'car_model'=>fake()->sentence,

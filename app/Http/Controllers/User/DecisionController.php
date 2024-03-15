@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Decision; // Don't forget to import the Decision model
+use Illuminate\Support\Facades\Auth;
 
 class DecisionController extends Controller
 {
@@ -32,12 +33,18 @@ class DecisionController extends Controller
             $imagePath = $request->file('decision_image')->store('car_images');
             $validatedData['decision_image'] = $imagePath;
         }
+
+        // Set the user_id field to the ID of the authenticated user
+        $validatedData['user_id'] = Auth::id();
+
         $validatedData['status'] = 'pending'; // Set the status to pending
+
         // Create a new decision
         Decision::create($validatedData);
 
         return redirect()->route('decisions.create')->with('success', 'Decision created successfully!');
     }
+
     public function viewPastForms()
     {
         // Fetch the user's past submitted forms

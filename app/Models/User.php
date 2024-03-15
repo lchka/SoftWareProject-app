@@ -33,6 +33,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Decision::class);
     }
+
+    
     public function authorizeRoles($roles)
     {
         if (is_array($roles)) {
