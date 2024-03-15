@@ -43,7 +43,9 @@ Route::middleware('auth')->group(function () {
 });
 Route::get('/decisions/{id}', [UserDecisionController::class, 'show'])->name('decisions.show');
 Route::get('/user/decisions/past_forms', [UserDecisionController::class, 'index'])->name('user.decisions.past_forms');
+// Change your route definition to accept the ID
 Route::delete('/decisions/{id}', [UserDecisionController::class, 'destroy'])->name('decisions.destroy');
+
 
 
 

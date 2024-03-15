@@ -50,8 +50,15 @@ class DecisionController extends Controller
 
         // Handle file upload
         if ($request->hasFile('decision_image')) {
-            $imagePath = $request->file('decision_image')->store('car_images');
-            $validatedData['decision_image'] = $imagePath;
+            $image = $request->file('decision_image');
+            $imageName = time() . '.' . $image->extension();
+
+            // Store the image in the 'public/decisions' directory
+            $image->storeAs('public/decisions', $imageName);
+
+            // Define the full path to the stored image
+            $decision_image_name = 'storage/decisions/' . $imageName;
+            $validatedData['decision_image'] = $decision_image_name;
         }
 
         // Set the user_id field to the ID of the authenticated user
@@ -59,15 +66,16 @@ class DecisionController extends Controller
 
         $validatedData['status'] = 'pending'; // Set the status to pending
 
-        // Create a new decision
         Decision::create($validatedData);
-
         return redirect()->route('decisions.create')->with('success', 'Decision created successfully!');
     }
 
 
-    public function destroy(Decision $decision)
+    public function destroy($id)
     {
+        // Find the Decision model instance by ID
+        $decision = Decision::findOrFail($id);
+
         // Check if the user is authorized to delete the decision
         if ($decision->user_id == Auth::id()) {
             $decision->delete();

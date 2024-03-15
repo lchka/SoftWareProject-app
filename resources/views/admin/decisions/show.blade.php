@@ -11,7 +11,8 @@
             <p class="card-text"><strong>Car Brand:</strong> {{ $decision->car_brand }}</p>
             <p class="card-text"><strong>Year of Production:</strong> {{ $decision->year_of_prod }}</p>
             <p class="card-text"><strong>Decision Image:</strong></p>
-            <img src="{{ asset($decision->decision_image) }}" alt="Decision Image" width="400" height="400">
+            <img src="{{ asset('storage/' . $decision->decision_image) }}" alt="Decision Image">
+
         </div>
     </div>
 </div>
