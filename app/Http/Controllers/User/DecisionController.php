@@ -67,7 +67,7 @@ class DecisionController extends Controller
         $validatedData['status'] = 'pending'; // Set the status to pending
 
         Decision::create($validatedData);
-        return redirect()->route('decisions.create')->with('success', 'Decision created successfully!');
+        return redirect()->route('welcome')->with('success', 'Decision created successfully!');
     }
 
 
