@@ -64,8 +64,8 @@ require __DIR__.'/auth.php';
 Route::middleware(['auth'])->group(function () {
     Route::resource('Admin/decisions', AdminDecisionController::class)->names('admin.decisions');
 });
-Route::post('/admin/decisions/{id}/submit', [AdminDecisionController::class, 'updateStatus'])->name('admin.decisions.submit');
 
+Route::post('/admin/decisions/{id}/submit', [AdminDecisionController::class, 'updateStatus'])->name('admin.decisions.submit');
 
 Route::get('/admin/decisions/decided', [AdminDecisionController::class, 'index'])->name('admin.decisions.decided');
 

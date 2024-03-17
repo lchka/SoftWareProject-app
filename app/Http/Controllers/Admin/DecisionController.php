@@ -27,20 +27,29 @@ class DecisionController extends Controller
         }
     }
     public function updateStatus(Request $request, $id)
-    {
-        // Validate the incoming request
-        $request->validate([
-            'status' => 'required|in:Approved,Denied',
-        ]);
+{
+    // Validate the incoming request
+    $request->validate([
+        'status' => 'required|in:approved,denied',
+        'points' => $request->status == 'approved' ? 'required|integer|min:0|max:2500' : '', // Only require points when status is approved
+    ]);
 
-        // Find the decision by ID
-        $decision = Decision::findOrFail($id);
+    // Find the decision by ID
+    $decision = Decision::findOrFail($id);
 
-        // Update the status
-        $decision->status = $request->status;
-        $decision->save();
+    // Update the status
+    $decision->status = $request->status;
 
-        // Redirect back with a success message
-        return redirect()->back()->with('success', 'Decision status updated successfully!');
+    // If status is approved, assign points to the user
+    if ($request->status == 'approved') {
+        // Increment the user's points
+        $decision->user->increment('points', $request->points);
     }
+
+    // Save the decision
+    $decision->save();
+
+    // Redirect back with a success message
+    return redirect()->back()->with('success', 'Decision status updated successfully!');
+}
 }

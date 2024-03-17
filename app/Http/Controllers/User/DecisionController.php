@@ -45,7 +45,7 @@ class DecisionController extends Controller
             'car_model' => 'required|string|max:255',
             'car_brand' => 'required|string|max:255',
             'year_of_prod' => 'required|integer|min:1900|max:' . date('Y'),
-            'decision_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'decision_image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
         // Handle file upload
