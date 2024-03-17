@@ -5,6 +5,12 @@ use Illuminate\Support\Facades\Route;
 
 //carpart controller
 use App\Http\Controllers\Admin\CarPartController as AdminCarPartController;
+use App\Http\Controllers\Admin\DecisionController as AdminDecisionController;
+
+
+
+
+
 use App\Http\Controllers\User\CarPartController as UserCarPartController;
 use App\Http\Controllers\User\DecisionController as UserDecisionController; 
 
@@ -50,8 +56,21 @@ Route::delete('/decisions/{id}', [UserDecisionController::class, 'destroy'])->na
 
 
 
-
+//admin routes
 require __DIR__.'/auth.php';
+
+
+//this routes all the views in admin -> decisions folder
+Route::middleware(['auth'])->group(function () {
+    Route::resource('Admin/decisions', AdminDecisionController::class)->names('admin.decisions');
+});
+Route::post('/admin/decisions/{id}/submit', [AdminDecisionController::class, 'updateStatus'])->name('admin.decisions.submit');
+
+
+Route::get('/admin/decisions/decided', [AdminDecisionController::class, 'index'])->name('admin.decisions.decided');
+
+
+
 
 // Auth::routes();
 

@@ -2,20 +2,33 @@
 
 @section('content')
 <div class="container">
-    <h2>Decision Forms</h2>
+    <h2>Recycling Requests</h2>
     <div class="row">
-        @foreach ($decisions as $decided)
+        @foreach ($decisions as $decision)
         <div class="col-md-6">
             <div class="card mb-3">
                 <div class="card-body">
-                    <h5 class="card-title">Decision Form for {{ $decided->user->name }}</h5>
-                    <p class="card-text">Submitted: {{ $decided->created_at->format('Y-m-d H:i:s') }}</p>
+                    <h5 class="card-title">
+                        @if ($decision->user)
+                          
+                    <p class="card-text">Recycled Part: {{ $decision->name }}</p>
+
+                        @else
+                            Decision Form (No User) - Decision ID: {{ $decision->id }}
+                        @endif
+                    </h5>
+                    Submitted By {{ $decision->user->name }}
+                    <p class="card-text">Email: {{ $decision->user->email }}</p>
+                    <p class="card-text">Submitted: {{ $decision->created_at->format('Y-m-d') }}</p>
+
                     <!-- Display other relevant information about the form -->
-                    <form action="{{ route('admin.decisions.submit', $decided->id) }}" method="post">
+                    <form action="{{ route('admin.decisions.submit', $decision->id) }}" method="post">
                         @csrf
                         <div class="form-group">
                             <label for="decision">Decision:</label>
                             <select name="decision" id="decision" class="form-control">
+                            <option value="pending">pending</option>
+
                                 <option value="approved">Approved</option>
                                 <option value="denied">Denied</option>
                             </select>

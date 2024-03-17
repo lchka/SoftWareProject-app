@@ -19,4 +19,8 @@ class Decision extends Model
         'decision_image'
     ];
     protected $table = 'decision';
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

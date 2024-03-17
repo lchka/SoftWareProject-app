@@ -48,6 +48,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('user.carparts.index') }}">Shop</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.decisions.decided') }}">Decided Forms</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -79,29 +82,30 @@
                                 <!-- Link to Past Forms -->
                                 <a class="dropdown-item" href="{{ route('user.decisions.past_forms') }}">
                                     Past Forms
-                                </a> <div class="dropdown-divider">
+                                </a>
+                                <div class="dropdown-divider">
+                                </div>
+
+                                <!-- Logout Link -->
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <!-- Logout Form -->
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
                             </div>
-
-                            <!-- Logout Link -->
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-
-                            <!-- Logout Form -->
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
+                        </li>
+                        @endguest
+                    </ul>
                 </div>
-                </li>
-                @endguest
-                </ul>
             </div>
-    </div>
-    </nav>
+        </nav>
 
-    <main class="py-4">
-        @yield('content')
-    </main>
+        <main class="py-4">
+            @yield('content')
+        </main>
     </div>
 </body>
 
