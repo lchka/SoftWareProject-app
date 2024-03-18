@@ -14,6 +14,8 @@ use App\Http\Controllers\Admin\DecisionController as AdminDecisionController;
 use App\Http\Controllers\User\CarPartController as UserCarPartController;
 use App\Http\Controllers\User\DecisionController as UserDecisionController; 
 
+
+//both of these welcome adminstrate for logged in users and guests
 Route::get('/', function () {
     return view('welcome');
 });
@@ -21,6 +23,8 @@ Route::get('/', function () {
 Route::get('/welcome', function () {
     return view('welcome');
 })->name('welcome');
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -40,9 +44,11 @@ Route::resource('carparts', UserCarPartController::class)->names('user.carparts'
 
 
 
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::view('/admin/welcome', 'admin.welcome')->name('admin.welcome');
+});
 
-
-///decisions DONT FUCKING TOUCH THESE
+///decisions users and guests DONT FUCKING TOUCH THESE
 Route::middleware('auth')->group(function () {
     Route::get('/decisions/create', [UserDecisionController::class, 'create'])->name('decisions.create');
     Route::post('/decisions', [UserDecisionController::class, 'store'])->name('decisions.store');
