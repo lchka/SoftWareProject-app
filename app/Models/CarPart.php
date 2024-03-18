@@ -19,4 +19,9 @@ class CarPart extends Model
         'usage_level',
         'car_part_image'
     ];
+    //for many to many with basket
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'basket')->withPivot('quantity');
+    }
 }

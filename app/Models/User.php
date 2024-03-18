@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Decision;
+use App\Models\CarPart;
 
 class User extends Authenticatable
 {
@@ -24,17 +25,23 @@ class User extends Authenticatable
         'password',
         'points'
     ];
-
-    public function roles()
-    {
-        return $this->belongsToMany('App\Models\Role', 'user_role');
-    }
+    //fdor form
     public function decisions()
     {
         return $this->hasMany(Decision::class);
     }
+    //for basket
+    public function carParts()
+    {
+        return $this->belongsToMany(CarPart::class, 'basket')->withPivot('quantity');
+    }
+    public function roles()
+    {
+        return $this->belongsToMany('App\Models\Role', 'user_role');
+    }
 
-    
+
+
     public function authorizeRoles($roles)
     {
         if (is_array($roles)) {
