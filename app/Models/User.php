@@ -25,16 +25,19 @@ class User extends Authenticatable
         'password',
         'points'
     ];
-    //fdor form
-    public function decisions()
-    {
-        return $this->hasMany(Decision::class);
-    }
     //for basket
     public function carParts()
     {
         return $this->belongsToMany(CarPart::class, 'basket')->withPivot('quantity');
     }
+
+    //fdor form
+    public function decisions()
+    {
+        return $this->hasMany(Decision::class);
+    }
+
+   
     public function roles()
     {
         return $this->belongsToMany('App\Models\Role', 'user_role');

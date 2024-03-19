@@ -7,7 +7,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CarPartController as AdminCarPartController;
 use App\Http\Controllers\Admin\DecisionController as AdminDecisionController;
 
+//basketContrller
 
+use App\Http\Controllers\BasketController;
 
 
 
@@ -59,6 +61,11 @@ Route::get('/user/decisions/past_forms', [UserDecisionController::class, 'index'
 Route::delete('/decisions/{id}', [UserDecisionController::class, 'destroy'])->name('decisions.destroy');
 
 
+//Basket controller
+Route::middleware(['auth'])->group(function () {
+    Route::post('/basket/add/{car_part_id}', [BasketController::class, 'addToBasket']);
+    Route::delete('/basket/remove/{car_part_id}', [BasketController::class, 'removeFromBasket']);
+});
 
 
 
