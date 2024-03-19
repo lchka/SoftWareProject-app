@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('car_part_id');
             $table->unsignedInteger('quantity')->default(1);
             $table->timestamps();
-    
+            $table->decimal('price', 10, 2);
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('car_part_id')->references('id')->on('car_parts')->onDelete('cascade');
         });

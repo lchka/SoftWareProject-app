@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Basket extends Model
 {
+
+    use HasFactory;
+    
     protected $fillable = [
         'user_id','car_part_id', 'quantity','price'
     ];

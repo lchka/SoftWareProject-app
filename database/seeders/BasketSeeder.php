@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Basket;
 use Illuminate\Database\Seeder;
+use App\Models\Basket;
 
 class BasketSeeder extends Seeder
 {
@@ -14,7 +14,6 @@ class BasketSeeder extends Seeder
      */
     public function run()
     {
-        // Create 50 fake basket records using the BasketFactory
         Basket::factory()->count(15)->create();
     }
 }

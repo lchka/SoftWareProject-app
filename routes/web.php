@@ -41,27 +41,28 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::resource('Admin/carparts', AdminCarPartController::class)->middleware(['auth'])->names('admin.carparts'); //middleware is responible for authencating and forcing the user to log in, removing this we can make it so that a user can be classed as 'guest' so they do not have to log in, unless they want too.
+
+//admin routes
+require __DIR__.'/auth.php';
+
+//CARPARTS ADMIN VIEWS
+Route::resource('Admin/carparts', AdminCarPartController::class)->middleware(['auth'])->names('admin.carparts'); 
+//CARPARTS USER VIEWS
 Route::resource('carparts', UserCarPartController::class)->names('user.carparts');
 
 
 
-Route::middleware(['auth', 'admin'])->group(function () {
-    Route::view('/admin/welcome', 'admin.welcome')->name('admin.welcome');
-});
-
-///decisions users and guests DONT FUCKING TOUCH THESE
+///DECISIONS USER
 Route::middleware('auth')->group(function () {
     Route::get('/decisions/create', [UserDecisionController::class, 'create'])->name('decisions.create');
     Route::post('/decisions', [UserDecisionController::class, 'store'])->name('decisions.store');
 });
 Route::get('/decisions/{id}', [UserDecisionController::class, 'show'])->name('decisions.show');
 Route::get('/user/decisions/past_forms', [UserDecisionController::class, 'index'])->name('user.decisions.past_forms');
-// Change your route definition to accept the ID
 Route::delete('/decisions/{id}', [UserDecisionController::class, 'destroy'])->name('decisions.destroy');
 
 
-//Basket controller
+//Basket controller USER
 Route::middleware(['auth'])->group(function () {
     Route::post('/basket/add/{car_part_id}', [BasketController::class, 'addToBasket']);
     Route::delete('/basket/remove/{car_part_id}', [BasketController::class, 'removeFromBasket']);
@@ -69,17 +70,15 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-//admin routes
-require __DIR__.'/auth.php';
 
 
-//this routes all the views in admin -> decisions folder
+//DECISIONS ADMIN
 Route::middleware(['auth'])->group(function () {
     Route::resource('Admin/decisions', AdminDecisionController::class)->names('admin.decisions');
 });
 
+//needs own routes as laravel in built routing for crud doesnt account for foreign routes
 Route::post('/admin/decisions/{id}/submit', [AdminDecisionController::class, 'updateStatus'])->name('admin.decisions.submit');
-
 Route::get('/admin/decisions/decided', [AdminDecisionController::class, 'index'])->name('admin.decisions.decided');
 
 
