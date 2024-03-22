@@ -46,9 +46,13 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 //CARPARTS ADMIN VIEWS
-Route::resource('Admin/carparts', AdminCarPartController::class)->middleware(['auth'])->names('admin.carparts'); 
+Route::resource('Admin/carparts', AdminCarPartController::class)->middleware(['auth'])->names('admin.carparts');
+Route::get('Admin/carparts/{id}', [UserCarPartController::class, 'show'])->name('admin.carparts.show');
+
 //CARPARTS USER VIEWS
 Route::resource('carparts', UserCarPartController::class)->names('user.carparts');
+Route::get('/carparts/{id}', [UserCarPartController::class, 'show'])->name('user.carparts.show');
+
 
 //basket
 Route::get('/basket', [BasketController::class, 'index'])->name('user.basket.index');

@@ -2,12 +2,8 @@
 
 @section('content')
 <x-alert-success>
-    @if(session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-    @endif
-</x-alert-success>
+                {{ session('success') }}
+            </x-alert-success>
     <x-slot name="header">
         <h2 class="font-bold text-xl text-white leading-tight">
             All USER Car Parts

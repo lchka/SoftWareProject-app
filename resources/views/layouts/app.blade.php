@@ -49,7 +49,7 @@
                             <a class="nav-link" href="{{ route('user.carparts.index') }}">Shop</a>
                         </li>
                         <li class="nav-item">
-                            @if(auth()->check() && auth()->user()->hasRole('user'))
+                            @if(auth()->check() && auth()->user()->hasRole('admin'))
                             <a class="nav-link" href="{{ route('admin.decisions.decided') }}">Decided Forms</a>
                             @endif
                         </li>
@@ -71,14 +71,17 @@
                         </li>
                         @endif
                         @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('user.basket.index') }}">
+                                <i class="bi bi-basket2-fill fs-5 text-dark"></i>
+                                Basket
+                            </a>
+
+                        </li>
                         <li class="nav-item d-flex justify-content-center ">
                             <span class="nav-link fs-5 text-success">({{ Auth::user()->points }})</span>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('user.basket.index') }}">
-                                <i class="bi bi-basket2-fill fs-5"></i>
-                            </a>
-                        </li>
+                       
                         <!-- User Dropdown -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

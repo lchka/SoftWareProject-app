@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+<x-alert-success>
+                {{ session('success') }}
+            </x-alert-success>
 <div class="container">
     <h2>Recycling Requests</h2>
     <div class="row">
