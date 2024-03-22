@@ -49,10 +49,10 @@
                             <a class="nav-link" href="{{ route('user.carparts.index') }}">Shop</a>
                         </li>
                         <li class="nav-item">
-                        @if(auth()->check() && auth()->user()->hasRole('admin'))
+                            @if(auth()->check() && auth()->user()->hasRole('user'))
                             <a class="nav-link" href="{{ route('admin.decisions.decided') }}">Decided Forms</a>
-                        @endif
-                    </li>
+                            @endif
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -73,6 +73,11 @@
                         @else
                         <li class="nav-item d-flex justify-content-center ">
                             <span class="nav-link fs-5 text-success">({{ Auth::user()->points }})</span>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('user.basket.index') }}">
+                                <i class="bi bi-basket2-fill fs-5"></i>
+                            </a>
                         </li>
                         <!-- User Dropdown -->
                         <li class="nav-item dropdown">

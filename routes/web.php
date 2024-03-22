@@ -50,6 +50,13 @@ Route::resource('Admin/carparts', AdminCarPartController::class)->middleware(['a
 //CARPARTS USER VIEWS
 Route::resource('carparts', UserCarPartController::class)->names('user.carparts');
 
+//basket
+Route::get('/basket', [BasketController::class, 'index'])->name('user.basket.index');
+Route::post('/basket/add/{car_part_id}', [BasketController::class, 'addToBasket'])->name('user.basket.add');
+Route::delete('/basket/remove/{car_part_id}', [BasketController::class, 'removeFromBasket'])->name('user.basket.remove');
+
+
+
 
 
 ///DECISIONS USER
@@ -63,11 +70,6 @@ Route::delete('/decisions/{id}', [UserDecisionController::class, 'destroy'])->na
 
 
 //Basket controller USER
-Route::middleware(['auth'])->group(function () {
-    Route::post('/basket/add/{car_part_id}', [BasketController::class, 'addToBasket']);
-    Route::delete('/basket/remove/{car_part_id}', [BasketController::class, 'removeFromBasket']);
-});
-
 
 
 

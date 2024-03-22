@@ -1,6 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+<x-alert-success>
+    @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
+</x-alert-success>
     <x-slot name="header">
         <h2 class="font-bold text-xl text-white leading-tight">
             All USER Car Parts
@@ -44,6 +51,12 @@
                                         No Image
                                     @endif
                                 </p>
+                                
+                                <!-- Add to Basket Button -->
+                                <form method="POST" action="{{ route('user.basket.add', $carpart->id) }}">
+                                    @csrf
+                                    <button type="submit" class="btn btn-primary">Add to Basket</button>
+                                </form>
                             </div>
                         </div>
                     </div>

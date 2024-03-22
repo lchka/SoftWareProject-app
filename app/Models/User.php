@@ -42,7 +42,16 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Models\Role', 'user_role');
     }
-
+    
+    public function assignRole(string $roleName): void
+    {
+        $role = Role::where('name', $roleName)->first();
+    
+        if ($role) {
+            $this->roles()->sync([$role->id]); // Assuming 'roles' is the name of your pivot table
+        }
+    }
+    
 
 
     public function authorizeRoles($roles)
