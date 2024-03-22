@@ -49,7 +49,7 @@
                             <a class="nav-link" href="{{ route('user.carparts.index') }}">Shop</a>
                         </li>
                         <li class="nav-item">
-                            @if(auth()->check() && auth()->user()->hasRole('admin'))
+                            @if(auth()->check() && auth()->user()->hasRole('user'))
                             <a class="nav-link" href="{{ route('admin.decisions.decided') }}">Decided Forms</a>
                             @endif
                         </li>
