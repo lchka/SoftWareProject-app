@@ -44,8 +44,16 @@ Route::middleware('auth')->group(function () {
 // Admin routes
 
 // CARPARTS ADMIN VIEWS
-Route::resource('Admin/carparts', AdminCarPartController::class)->middleware(['auth'])->names('admin.carparts');
-Route::get('Admin/carparts/{id}', [AdminCarPartController::class, 'show'])->name('admin.carparts.show');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/carparts/create', [AdminCarPartController::class, 'create'])->name('admin.carparts.create');
+    Route::get('/admin/carparts/index', [AdminCarPartController::class, 'index'])->name('admin.carparts.index');
+    Route::post('/admin/carparts', [AdminCarPartController::class, 'store'])->name('admin.carparts.store');
+    Route::get('/admin/carparts/{id}', [AdminCarPartController::class, 'show'])->name('admin.carparts.show');
+    Route::get('/admin/carparts/{id}/edit', [AdminCarPartController::class, 'edit'])->name('admin.carparts.edit');
+    Route::put('/admin/carparts/{id}', [AdminCarPartController::class, 'update'])->name('admin.carparts.update');
+    Route::delete('/admin/carparts/{id}', [AdminCarPartController::class, 'destroy'])->name('admin.carparts.destroy');
+});
+
 
 // CARPARTS USER VIEWS
 Route::resource('carparts', UserCarPartController::class)->names('user.carparts');

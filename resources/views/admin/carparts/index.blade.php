@@ -1,9 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<x-alert-success>
-                {{ session('success') }}
-            </x-alert-success>
+    <x-alert-success>
+        {{ session('success') }}
+    </x-alert-success>
+
     <x-slot name="header">
         <h2 class="font-bold text-xl text-white leading-tight">
             All ADMIN Car Parts
@@ -13,6 +14,10 @@
     <div class="py-12">
         <div class="container">
             <div class="row">
+                <!-- Create Car Part Link -->
+                <div class="col-md-12 mb-3">
+                    <a href="{{ route('admin.carparts.create') }}" class="btn btn-primary">Create Car Part</a>
+                </div>
 
                 <!-- Filter Form -->
                 <form method="GET" action="{{ route('welcome') }}" class="mb-3">

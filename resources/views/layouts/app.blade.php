@@ -45,12 +45,7 @@
                             @endif
 
                         </li>
-                        <li class="nav-item">
-                            @if(auth()->check() && auth()->user()->hasRole('admin'))
-                            <a class="nav-link" href="{{ route('user.decisions.create') }}">Recycle Form</a>
-                            @endif
-
-                        </li>
+                     
                         <li class="nav-item">
                             <a class="nav-link" href="">Our Goal</a>
                         </li>
@@ -66,7 +61,7 @@
             
                         @if(auth()->check() && auth()->user()->hasRole('admin'))
                         <li class="nav-item"> 
-                            <a class="nav-link" href="{{ route('admin.carparts.index') }}">Shop</a>
+                            <a class="nav-link" href="{{ route('admin.carparts.index') }}">Car Parts</a>
                         </li>
                         @endif
 
