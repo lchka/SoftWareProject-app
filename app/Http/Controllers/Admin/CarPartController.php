@@ -14,4 +14,9 @@ class CarPartController extends Controller
         $carparts = CarPart::all();
         return view('admin.carparts.index', compact('carparts'));
     }
+    public function show($id)
+    {
+        $carpart = CarPart::findOrFail($id);
+        return view('admin.carparts.show', compact('carpart'));
+    }
 }

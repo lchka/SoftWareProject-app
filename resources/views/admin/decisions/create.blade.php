@@ -6,9 +6,7 @@
             </x-alert-success>
 <div class="container">
     <h2>Recycle Car Part</h2>
-    <form action="{{ route('user.decisions.store') }}" method="post" enctype="multipart/form-data" novalidate onsubmit="return confirm('Please ensure to review the form details carefully prior to submission, as amendments will not be permitted!!!!') ? true : false;">
-
-
+    <form action="{{ route('admin.decisions.store') }}" method="post" enctype="multipart/form-data" novalidate onsubmit="return confirm('Please ensure to review the form details carefully prior to submission, as amendments will not be permitted!!!!') ? true : false;">
         @csrf
 
         <div class="form-group my-3">

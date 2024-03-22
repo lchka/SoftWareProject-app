@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
 use App\Models\User; // Import the User model
 use Illuminate\Http\Request;
 use App\Models\CarPart;
+use App\Http\Controllers\Controller; 
+
 
 class BasketController extends Controller
 {

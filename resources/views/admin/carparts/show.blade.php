@@ -16,7 +16,16 @@
             <p class="card-text"><strong>Year of Production:</strong> {{ $carpart->year_of_prod }}</p>
             <p class="card-text"><strong>Usage Level:</strong> {{ $carpart->usage_level }}</p>
             <p class="card-text"><strong>Car Part Image:</strong></p>
-            <img src="{{ asset($carpart->car_part_image) }}" alt="Car Part Image" width="400" height="400">
+             <!-- Add to Basket Button -->
+             <div class="d-flex">
+                <img src="{{ asset($carpart->car_part_image) }}" alt="Car Part Image" width="400" height="400">
+                <div class="mx-4">
+                    <form method="POST" action="{{ route('user.basket.add', $carpart->id) }}">
+                        @csrf
+                        <button type="submit" class="btn btn-primary">Add to Basket</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>

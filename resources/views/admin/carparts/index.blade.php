@@ -26,7 +26,7 @@
                             <div class="card-body">
                                 <!-- Car Part Details -->
                                 <h2 class="card-title font-weight-bold mb-3">
-                                    {{ $index + 1 }}. <a href="{{ route('user.carparts.show', $carpart) }}">{{ ucfirst($carpart->name) }}</a>
+                                    {{ $index + 1 }}. <a href="{{ route('admin.carparts.show', $carpart) }}">{{ ucfirst($carpart->name) }}</a>
                                 </h2>
                                 <p class="card-text mb-2">
                                     <strong>Description:</strong> {{ ucfirst($carpart->description) }}

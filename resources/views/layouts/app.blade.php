@@ -40,17 +40,40 @@
                             <a class="nav-link" href="">Services</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('decisions.create') }}">Recycle Form</a>
+                            @if(auth()->check() && auth()->user()->hasRole('user'))
+                            <a class="nav-link" href="{{ route('user.decisions.create') }}">Recycle Form</a>
+                            @endif
+
+                        </li>
+                        <li class="nav-item">
+                            @if(auth()->check() && auth()->user()->hasRole('admin'))
+                            <a class="nav-link" href="{{ route('user.decisions.create') }}">Recycle Form</a>
+                            @endif
+
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="">Our Goal</a>
                         </li>
-                        <li class="nav-item">
+
+
+                        <!-- need to add a guest view for car parts as guests still need to view the shop, add the web.php route too -->
+                        @if(auth()->check() && auth()->user()->hasRole('user'))
+                        <li class="nav-item"> 
                             <a class="nav-link" href="{{ route('user.carparts.index') }}">Shop</a>
                         </li>
+                        @endif
+
+            
+                        @if(auth()->check() && auth()->user()->hasRole('admin'))
+                        <li class="nav-item"> 
+                            <a class="nav-link" href="{{ route('admin.carparts.index') }}">Shop</a>
+                        </li>
+                        @endif
+
+<!-- want the admin to have own view of shop, this causes two shop navs to appear, as both are shown the unauth and auth but i need to index for car parts show have different endpoints for user and admin -->
                         <li class="nav-item">
-                            @if(auth()->check() && auth()->user()->hasRole('user'))
-                            <a class="nav-link" href="{{ route('admin.decisions.decided') }}">Decided Forms</a>
+                            @if(auth()->check() && auth()->user()->hasRole('admin'))
+                            <a class="nav-link" href="{{ route('admin.decisions.decided') }}">Forms for Recycling</a>
                             @endif
                         </li>
                     </ul>
@@ -81,7 +104,7 @@
                         <li class="nav-item d-flex justify-content-center ">
                             <span class="nav-link fs-5 text-success">({{ Auth::user()->points }})</span>
                         </li>
-                       
+
                         <!-- User Dropdown -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
